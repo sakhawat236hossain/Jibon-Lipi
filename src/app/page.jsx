@@ -1,10 +1,19 @@
+import DailyFocus from "@/Components/Home/DailyFocus";
 import Hero from "@/Components/Home/Hero";
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-   <Hero></Hero>
-    </div>
+  
+    <main className="min-h-screen bg-zinc-50 dark:bg-[#05070a] font-sans transition-colors duration-500">
+      
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Daily Focus Section */}
+      <DailyFocus />
+      
+
+      
+    </main>
   );
 }
