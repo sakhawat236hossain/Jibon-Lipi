@@ -1,22 +1,14 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.DB_NAME;
-
-if (!uri) {
-  throw new Error("Please add your Mongo URI to .env.local");
-}
+const options = {};
 
 let client;
 let clientPromise;
 
-const options = {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-};
+if (!process.env.MONGODB_URI) {
+  throw new Error("Please add your Mongo URI to .env.local");
+}
 
 if (process.env.NODE_ENV === "development") {
   if (!global._mongoClientPromise) {
@@ -29,15 +21,10 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = client.connect();
 }
 
-/**
- * @param {string} collectionName
- */
-export const dbConnect = async (collectionName) => {
-  const connectedClient = await clientPromise;
-  const db = connectedClient.db(dbName);
-  if (collectionName) return db.collection(collectionName);
-  return db;
-};
+export async function dbConnect() {
+  const client = await clientPromise;
+  return client.db(process.env.DB_NAME || "daily_focus_db");
+}
 
 export const collections = {
   DIARY: "diary",
