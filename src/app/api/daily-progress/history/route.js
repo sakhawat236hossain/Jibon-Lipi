@@ -6,18 +6,18 @@ export async function GET() {
     const db = await dbConnect();
     const collection = db.collection(collections.TASKS);
 
-    // গত ৭ দিনের তারিখ বের করা
+    // গত ৯০ দিনের ডাটা (হিটম্যাপের জন্য প্রয়োজন)
     const historyData = await collection
       .find({})
-      .sort({ date: -1 }) // নতুন ডাটা আগে
-      .limit(7)           // শুধু ৭টি
+      .sort({ date: -1 }) 
+      .limit(90)          
       .toArray();
 
-   
     const formattedData = historyData.reverse().map(item => ({
-      name: new Date(item.date).toLocaleDateString('en-US', { weekday: 'short' }),
+      name: new Date(item.date).toLocaleDateString('bn-BD', { weekday: 'short' }), // বাংলা বার
       progress: item.progress,
-      fullDate: item.date
+      fullDate: item.date,
+      date: item.date // হিটম্যাপ লজিকের জন্য মূল তারিখ
     }));
 
     return NextResponse.json({ success: true, data: formattedData });
