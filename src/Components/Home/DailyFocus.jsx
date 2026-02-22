@@ -130,7 +130,7 @@ const DailyFocus = () => {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className={`w-full py-6 rounded-[2rem] flex items-center justify-center gap-3 font-black text-xl transition-all shadow-xl
+                className={`w-full py-6 rounded-[2rem]  flex items-center justify-center gap-3 font-black text-xl transition-all shadow-xl
                   ${isSubmitting ? "bg-slate-300 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700 text-white hover:-translate-y-1 shadow-indigo-500/20"}`}
               >
                 {isSubmitting ? <Loader2 className="animate-spin" /> : <Send size={24} />} 
