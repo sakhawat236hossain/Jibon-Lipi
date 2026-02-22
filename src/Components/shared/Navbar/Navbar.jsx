@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Sun, Moon, Menu, X, BookOpen, History, Heart, User, TrendingUp } from 'lucide-react';
+import { Sun, Moon, Menu, X, BookOpen, History, Heart, User, TrendingUp, Trophy } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +14,7 @@ const Navbar = () => {
     { name: 'ইতিহাস', href: '/history', icon: <History size={18} /> },
     { name: 'পরিবার', href: '/family', icon: <Heart size={18} /> },
     { name: 'দেখুন আপনার উন্নতি', href: '/analytics', icon: <TrendingUp size={18} /> },
+    { name: 'অ্যাচিভমেন্ট', href: '/achievements', icon: <Trophy size={18} /> },
   ];
  
 
